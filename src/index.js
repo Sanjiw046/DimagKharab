@@ -24,15 +24,12 @@ app.use(express.static('public'));
 
 app.use(cookieParser());
 
-app.use(function(req,res,next){
-    console.log('hii');
-    console.log(req.body);
-    next();
-})
 app.use('/',userRouter); //router folder ko import marr rakha hai userRouter name se
+
 
 mongoose.connect(`${process.env.DB_PATH}/${process.env.DB_NAME}`)
 .then(()=>{
+    console.log('connect successfully');
     app.listen(PORT,()=>{
         console.log(`http://localhost:`+PORT);
     })
